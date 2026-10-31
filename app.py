@@ -19,6 +19,7 @@ class DemoDevice:
         s['names']=[r['short'] for r in rs];s['seed_hex']=seed_bytes(rs).hex()
         for i,r in enumerate(rs):
             for k,base in BASES.items():s['values'][f'0x{base+i:08x}']=(STYLES[r['style']][0] if k=='style' else r[k]).to_bytes(1,'little',signed=True).hex()
+        s['values'].update(active_style_values(rs[active-1]))
         s['values'].update(wb_values(rs[active-1]['wb']));s['values']['0x01070762']=f'{active-1:02x}';s['values']['0x0107031c']='00'
     def read(self):self.progress('演示：读取模拟相机，未访问 USB。');return copy.deepcopy(self.snapshot)
     def apply(self,plan):

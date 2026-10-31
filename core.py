@@ -13,6 +13,7 @@ STYLES={'Standard':(1,'标准'),'Vivid':(2,'生动'),'Neutral':(3,'中性'),'Por
         'Landscape':(5,'风景'),'Black & White':(6,'黑白'),'Clear':(7,'清澈'),'Deep':(8,'深色'),
         'Light':(9,'浅色'),'Sunset':(10,'黄昏'),'Night':(11,'夜景'),'Autumn':(12,'红叶'),'Sepia':(14,'棕褐色')}
 BASES={'style':0x0107075c,'contrast':0x01070a0f,'saturation':0x01070a15,'sharpness':0x01070a1b}
+CURRENT_STYLE={'style':'0x01070175','contrast':'0x01070178','saturation':'0x01070187','sharpness':'0x0107018a'}
 WB_CURRENT=['0x01070017','0x01070016','0x010714b6','0x010714b5']
 WB_MEMORY=['0x0107067f','0x0107067e','0x010714dd','0x010714dc']
 DEFAULT_IDS=['kodak-ektachrome-e100','reala-ace','fuji-c200','kodak-gold-200','provia','ilford-hp5']
@@ -81,6 +82,16 @@ def wb_values(w):
     vs=[ai.to_bytes(1,'little',signed=True).hex(),ci.to_bytes(1,'little',signed=True).hex(),(a-ai*1000).to_bytes(2,'little',signed=True).hex(),(c-ci*1000).to_bytes(2,'little',signed=True).hex()]
     return {'0x01070019':'01',**dict(zip(WB_CURRENT,vs)),**dict(zip(WB_MEMORY,vs))}
 
+def active_style_values(recipe):
+    # Stored custom-slot values and the currently applied style are separate.
+    # Keep both consistent when selecting a slot, otherwise the menu can save
+    # the previous active style back into the newly selected custom slot.
+    values={**recipe,'style':STYLES[recipe['style']][0]}
+    # The native application sends zero saturation for monochrome styles;
+    # the stored per-slot value is retained independently.
+    if recipe['style'] in ('Black & White','Sepia'):values['saturation']=0
+    return {key:values[field].to_bytes(1,'little',signed=True).hex() for field,key in CURRENT_STYLE.items()}
+
 def seed_bytes(recipes):
     if len(recipes)!=6:raise ValueError('必须恰好六个槽位')
     return ''.join(f"{i} {round(r['wb']['ab']*1000)} {round(-r['wb']['gm']*1000)}\n" for i,r in enumerate(recipes)).encode()
@@ -144,8 +155,9 @@ def build_plan(snapshot,recipes,active):
             key=f'0x{base+i:08x}';n=STYLES[r['style']][0] if field=='style' else r[field]
             target[key]=n.to_bytes(1,'little',signed=True).hex()
         display.append({'slot':i+1,'before':snapshot['slots'][i],'after':r,'reference':f"曝光 {r['ev_thirds']/3:+.1f} EV / DRO {r['dro']}（手动参考）"})
-    # 0x01070187 is saturation, NOT Picture Effect. Effect-off is a separate
-    # explicit menu prerequisite until its A7R III property is verified.
+    # 0x01070187 is current saturation, NOT Picture Effect. Set it from the
+    # selected recipe; effect-off remains an explicit menu prerequisite.
+    target.update(active_style_values(recipes[active-1]))
     target.update(wb_values(recipes[active-1]['wb']));target['0x0107031c']='00';target['0x01070762']=f'{active-1:02x}'
     for k,v in target.items():
         if k not in before or len(before[k])!=len(v):raise ValueError('相机字段或长度不匹配')
@@ -161,4 +173,4 @@ WARNING_STEPS=[
  ('自愿承担实验风险','本软件按原样提供，不作适用性或可靠性保证；法律允许范围内不承担损失责任，不排除不可排除的法定责任。此次在其他同型号机身上的移植仍未实机验证。请核对下方实测身份，再输入确认短语。')]
 CONFIRM_PHRASE='ILCE-7RM3 3.10 我理解可能变砖'
 
-def schema():return {'scope':SCOPE,'styles':{k:v[1] for k,v in STYLES.items()},'warning_steps':[{'title':t,'body':b} for t,b in WARNING_STEPS],'confirm_phrase':CONFIRM_PHRASE,'name_max':8,'version':'0.1.4-experimental'}
+def schema():return {'scope':SCOPE,'styles':{k:v[1] for k,v in STYLES.items()},'warning_steps':[{'title':t,'body':b} for t,b in WARNING_STEPS],'confirm_phrase':CONFIRM_PHRASE,'name_max':8,'version':'0.1.5-experimental'}

@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 def main():
     # Build in a fresh named output; never recursively remove a guessed path.
-    out=ROOT/'dist'/'0.1.4'
+    out=ROOT/'dist'/'0.1.5'
     # Never let PyInstaller recursively replace an installed/running copy.
     # A release build requires a fresh, versioned destination.
     if out.exists():raise RuntimeError('版本输出目录已存在，请先核对并选择新的输出目录：'+str(out))
@@ -32,7 +32,7 @@ def main():
         for p in sorted(source):z.write(p,'creative-studio/'+p.relative_to(ROOT).as_posix())
     sums={p.relative_to(target).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in target.rglob('*') if p.is_file() and p.name!='SHA256SUMS.json'}
     (target/'SHA256SUMS.json').write_text(json.dumps(sums,indent=2)+'\n')
-    zipout=out/'CreativeStudio-Windows-x64-0.1.4.zip'
+    zipout=out/'CreativeStudio-Windows-x64-0.1.5.zip'
     with zipfile.ZipFile(zipout,'w',zipfile.ZIP_DEFLATED,compresslevel=7) as z:
         for p in target.rglob('*'):
             if p.is_file():z.write(p,'CreativeStudio/'+p.relative_to(target).as_posix())

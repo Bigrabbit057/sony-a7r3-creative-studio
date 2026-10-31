@@ -2,13 +2,13 @@
 
 Windows 10/11 x64 本地小工具：浏览、编辑 Recipe Lab 配方，分配六个创意风格自定义槽，写入参数、简称和会学习手动调整的 AWB 偏移。
 
-**版本：0.1.4-experimental。Windows 日常更新已通过参考机身写入及两遍读回；菜单验收状态见 [VERIFICATION.md](VERIFICATION.md)。新机首次安装尚未验证。**
+**版本：0.1.5-experimental。参考机身已完成 Windows 日常更新、菜单参数、名称和白平衡切换、普通重启验收；33 项离线/模拟/回环测试通过，详见 [VERIFICATION.md](VERIFICATION.md)。新机首次安装尚未验证。**
 
 本工具基本复刻 Recipe Lab 的配方编辑和选用方式，面向没有原厂 App 平台的 A7R III 实现六槽写入、名称显示和白平衡联动。**不同相机即使使用同一套参数，成像效果也可能明显不同；配方仅供参考，需要按机型、光线和个人喜好微调。** 它不是跨机型色彩校准工具，也不保证复现 A6000、富士或真实胶片的效果。
 
 ## 快速开始
 
-1. 完整解压 `CreativeStudio-Windows-x64-0.1.4.zip`，不要单独移动 EXE。双击 `CreativeStudio.exe`，会打开本机浏览器界面，不需要联网或安装 Python。
+1. 完整解压 `CreativeStudio-Windows-x64-0.1.5.zip`，不要单独移动 EXE。双击 `CreativeStudio.exe`，会打开本机浏览器界面，不需要联网或安装 Python。
 2. 想先熟悉操作，双击 `Demo.cmd`。演示模式只使用模拟数据，完全不访问 USB。
 3. 浏览「配方库」，修改风格、对比度、饱和度、锐度、白平衡和简称；保存或另存。
 4. 在「我的六槽」选择六个配方，保存安排。
@@ -64,7 +64,7 @@ AWB 正数 A/B 表示琥珀 A、负数表示蓝 B；正数 G/M 表示绿 G、负
 
 ## 开源与重建
 
-Recipe Lab 是开源项目，本工具使用其 GPL-3.0 配方表并保留原文件、来源和许可。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。本项目按 GPL-3.0-only 提供，软件分发包内附匹配的 `CreativeStudio-source.zip`，尚未发布到 GitHub。
+Recipe Lab 是开源项目，本工具使用其 GPL-3.0 配方表并保留原文件、来源和许可。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。本项目按 GPL-3.0-only 提供，软件分发包内附匹配的 `CreativeStudio-source.zip`。
 
 从源码目录使用 Python 3.11+（本次构建用 3.12）创建虚拟环境，安装 `requirements-dev.txt` 后：
 

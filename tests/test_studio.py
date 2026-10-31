@@ -42,10 +42,36 @@ class Recipes(unittest.TestCase):
             with self.assertRaises(ValueError):parse_record(bytes(raw))
     def test_plan_never_confuses_saturation_with_effect(self):
         d=DemoDevice('.',lambda s:None);s=d.read();s['values']['0x01070187']='03'
-        p=build_plan(s,selected(library_default()),2)
-        self.assertNotIn('0x01070187',p['changes']);self.assertEqual(p['after']['0x01070187'],'03')
-        allowed={f'0x{b+i:08x}' for b in BASES.values() for i in range(6)}|set(wb_values(selected(library_default())[0]['wb']))|{'0x0107031c','0x01070762'}
+        rs=selected(library_default());rs[1]['saturation']=2
+        p=build_plan(s,rs,2)
+        self.assertEqual(p['changes']['0x01070187'],'02')
+        allowed={f'0x{b+i:08x}' for b in BASES.values() for i in range(6)}|set(CURRENT_STYLE.values())|set(wb_values(rs[0]['wb']))|{'0x0107031c','0x01070762'}
         self.assertTrue(set(p['changes'])<=allowed)
+    def test_activate_portrait_from_clear_keeps_current_and_saved_consistent(self):
+        s=DemoDevice('.',lambda s:None).read();rs=selected(library_default())
+        rs[4].update(style='Portrait',contrast=-2,saturation=-3,sharpness=0)
+        self.assertEqual(s['values']['0x01070175'],'07')
+        p=build_plan(s,rs,5)
+        expected={'style':'04','contrast':'fe','saturation':'fd','sharpness':'00'}
+        for field,value in expected.items():
+            self.assertEqual(p['after'][CURRENT_STYLE[field]],value)
+            self.assertEqual(p['after'][f'0x{BASES[field]+4:08x}'],value)
+        self.assertEqual(p['after']['0x01070762'],'04')
+        for slot in (0,1,2,3,5):
+            for base in BASES.values():
+                key=f'0x{base+slot:08x}';self.assertEqual(p['after'][key],s['values'][key])
+    def test_reapply_same_slot_repairs_stale_current_style(self):
+        rs=selected(library_default());d=DemoDevice('.',lambda s:None)
+        rs[4].update(style='Portrait',contrast=-2,saturation=-3,sharpness=0)
+        d.set_recipes(rs,5);s=d.read();s['values']['0x01070175']='07'
+        p=build_plan(s,rs,5)
+        self.assertEqual(p['changes'],{'0x01070175':'04'})
+    def test_monochrome_current_saturation_is_zero_without_losing_saved_value(self):
+        for style in ('Black & White','Sepia'):
+            rs=selected(library_default());rs[5].update(style=style,saturation=3)
+            s=DemoDevice('.',lambda s:None).read();p=build_plan(s,rs,6)
+            self.assertEqual(p['after']['0x01070187'],'00')
+            self.assertEqual(p['after']['0x01070a1a'],'03')
     def test_model_scope(self):
         s=DemoDevice('.',lambda s:None).read()
         for k,v in [('model','ILCE-7RM3A'),('firmware','3.11'),('region','EU')]:

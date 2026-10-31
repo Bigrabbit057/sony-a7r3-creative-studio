@@ -1,0 +1,119 @@
+{
+  "files": {
+    "common.sh": {
+      "bytes": 2679,
+      "sha256": "a644a509cdf9dc72dde360673121a347538ba1a738f90a518027133a919ebad9",
+      "md5": "df413dd95b1337db8b182bfd15377e0f"
+    },
+    "title.sh": {
+      "bytes": 1278,
+      "sha256": "1ca8bfb729a1eac4dd6b2a288529edb52c55f4ee0706978885d071fcbdee1786",
+      "md5": "a1165e2614cfbe3e6647e0cc90c20e46"
+    },
+    "learner.sh": {
+      "bytes": 10071,
+      "sha256": "b38b157b8aad46ab31e969a8a7fdea7ea1e223773763ec07eef92229c8cea78a",
+      "md5": "6e66fc938ff6e0a9ecc76c5977391762"
+    },
+    "entry-original.elf": {
+      "bytes": 504,
+      "sha256": "4aca7139bdd87e4fd76ed6942062cdcb1fc1fd498c0cd9b2a02b0d7d248c72b4",
+      "md5": "bbb8e8b659345be1910195475ada0f1e"
+    },
+    "ok-entry-original.elf": {
+      "bytes": 556,
+      "sha256": "112b12f6fb9f9b452df16119b33b477f486e59382b40b9b2c582d476e56eb6c0",
+      "md5": "9e6a4b786d838635e5d2abb433c6eb1a"
+    },
+    "entry-installed.elf": {
+      "bytes": 504,
+      "sha256": "e079b3d031747dbc8c534d0628ef8e629cfa5a3b01e229e8a8e1b66443556549",
+      "md5": "8618517465ffd9b5b3fa3b4022fb9a04"
+    },
+    "ok-entry-installed.elf": {
+      "bytes": 556,
+      "sha256": "88beaca4776b794e213bf6be53ef2324d04e9a7f5e1a3ac50cda96be9a1e7135",
+      "md5": "75c9c5ed59f9d86486b3c50c02a04ba8"
+    },
+    "cave-original.elf": {
+      "bytes": 896,
+      "sha256": "ffd76804e6529bab0b1c6973d15d40b21ceb42f74aee19de8910ccf3b4f11fd5",
+      "md5": "ac107f79d2d561277dac6c9fdc6ce144"
+    },
+    "ok-cave-original.elf": {
+      "bytes": 948,
+      "sha256": "78129ffe3fd97efaeb7fb401660e2ca34f3d3db81e501600a4ef11edbf7d987c",
+      "md5": "accc248d5257efe5a133e75dbdbb6c53"
+    },
+    "cave-installed.elf": {
+      "bytes": 896,
+      "sha256": "c2432be91ff17041e8fed4bfe7757b65db0d5da96f2f77454318194245bcba3e",
+      "md5": "ad0a07cbbaccb5d8a266cbffb1962366"
+    },
+    "ok-cave-installed.elf": {
+      "bytes": 948,
+      "sha256": "e8044cde7f7c598cffb97cb3e8c5ed05f8076ebad85e5af006b32427673ba97b",
+      "md5": "e852f7982fd9170d665d88554cf6b298"
+    },
+    "clear-original.elf": {
+      "bytes": 514,
+      "sha256": "bc0f75096f7d4d1cf4e9309e0df774180a8dd2973979e34b2afc350ee7a53dd9",
+      "md5": "cf75e0b33d7ec89906cd2270db3bb555"
+    },
+    "ok-clear-original.elf": {
+      "bytes": 564,
+      "sha256": "d0e5f914990856f40a3d2bfe9ae44db5f2d225fe0bf057fbc294bc2464a7ecfe",
+      "md5": "3144f3b21d83cbe916b13eb997d3e08e"
+    },
+    "alias.elf": {
+      "bytes": 896,
+      "sha256": "7a747e353d4b834963e8f045a2c3e69dc32871e1bfb4dbe4791d03de82e52a7a",
+      "md5": "f60646b225086e9ea0a5cd0ec027d1ad"
+    },
+    "ok-alias.elf": {
+      "bytes": 924,
+      "sha256": "ef7dd24a50643ec31a96de57ca8f7f28999b3d2c3f21c4158ad7f27b2a6efc38",
+      "md5": "ef98da8baaec96893276ed5d5cce046e"
+    },
+    "stage.elf": {
+      "bytes": 1064,
+      "sha256": "74fb82599c3e5c6017d331b67139ca0c4456a4a3d45ddd7b028d81700bbc0abc",
+      "md5": "23296d35488aa073d5b1621729ae8d40"
+    },
+    "ok-stage.elf": {
+      "bytes": 1060,
+      "sha256": "fbab3cc174568310791d0c1ec6a0febd6136fbcce371ca84320bbf3d31260d11",
+      "md5": "079d145bead4d3ebbf73a3f6c96d90e9"
+    },
+    "enable.elf": {
+      "bytes": 672,
+      "sha256": "0305a8479fd2e008215ea254104f87e768b96d988393e0d20a3c84d1b2ee3e60",
+      "md5": "2b9cadb9a0ea9158bbf6a1dbc1be234e"
+    },
+    "ok-enable.elf": {
+      "bytes": 668,
+      "sha256": "3faf5cfb86a9ca40115bbf8dd18484e9ee85cca254fb8e5b05c1d6d65cfcb55d",
+      "md5": "3b39b5006779fb31184ad9470217df64"
+    },
+    "disable.elf": {
+      "bytes": 672,
+      "sha256": "07a86c8aefad441ed6b08c360c1a5ac4adc5505eefd701701109e02f1aa4ee6d",
+      "md5": "201ef734e86de1b2e36308b5e26273dc"
+    },
+    "ok-disable.elf": {
+      "bytes": 668,
+      "sha256": "7b5f41818a8e03505bfe2e86a471fdd25c0e0695b88912fbc402efb2e626b9ea",
+      "md5": "cb1f7a9f4bfc063837a37e9915c62406"
+    },
+    "boot.sh": {
+      "bytes": 6249,
+      "sha256": "6786db758ed30cb8e6102b30d07902879d523adc02a0edc98bf5c05c2a4c139a",
+      "md5": "5c17e5d1a80229c3fcc68c0d18c0a99a"
+    },
+    "bridge.sh": {
+      "bytes": 52,
+      "sha256": "443899a1b173036689c03a7e72c78ea13e7fb02db74be297fdeaf353f6298c12",
+      "md5": "972e124dab23edd43556dcd4fe2a723e"
+    }
+  }
+}

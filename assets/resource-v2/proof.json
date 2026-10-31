@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "camera_accessed": false,
+  "cases": [
+    {
+      "case": "old-version-reproduces-observed-refusal",
+      "passed": true
+    },
+    {
+      "case": "ok",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "case": "bad-code-map",
+      "passed": true,
+      "returncode": 10
+    },
+    {
+      "case": "bad-data-map",
+      "passed": true,
+      "returncode": 10
+    },
+    {
+      "case": "bad-process",
+      "passed": true,
+      "returncode": 10
+    },
+    {
+      "case": "bad-generation",
+      "passed": true,
+      "returncode": 10
+    },
+    {
+      "case": "bad-preimage",
+      "passed": true,
+      "returncode": 12
+    },
+    {
+      "case": "stage-failure",
+      "passed": true,
+      "returncode": 14
+    },
+    {
+      "case": "alias-changed",
+      "passed": true,
+      "returncode": 15
+    },
+    {
+      "case": "enable-failure",
+      "passed": true,
+      "returncode": 16
+    },
+    {
+      "case": "already-installed",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "case": "unrelated-language-mapping-original",
+      "passed": true
+    },
+    {
+      "case": "unrelated-language-mapping-absent",
+      "passed": true
+    }
+  ],
+  "native_ash_syntax": [
+    "title.sh",
+    "boot.sh"
+  ],
+  "files": {
+    "title.sh": {
+      "bytes": 1461,
+      "sha256": "d7c95e1a6f16b824a990f449d0b282146e6b6b8daca788284c942c85431b9a80",
+      "md5": "42d235ba5f7482d96d01365da2a53695"
+    },
+    "boot.sh": {
+      "bytes": 6296,
+      "sha256": "341e1aac0c198dcf543b25bd5c2521f1ebf9076236175338baa2484326954b62",
+      "md5": "607db8673c178169abd364922495dfe3"
+    }
+  },
+  "unchanged_native_helpers": true,
+  "unchanged_learner": true,
+  "unchanged_startup_bridge": true
+}

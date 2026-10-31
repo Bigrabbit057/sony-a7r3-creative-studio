@@ -1,0 +1,3 @@
+# Runtime templates and preimages are verified byte-for-byte. Preserve bytes
+# on every platform, including Windows checkouts with core.autocrlf enabled.
+* -text

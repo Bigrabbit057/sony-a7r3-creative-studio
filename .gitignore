@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+demo-data/
+test-data/
+build/
+dist/
+*.spec
+*.log
+backups/
+server.json
+*.zip
+live-data/
+instance.lock
+last-error.json
